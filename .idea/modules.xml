@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RoktApp.iml" filepath="$PROJECT_DIR$/.idea/modules/RoktApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RoktApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RoktApp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RoktApp.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RoktApp.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RoktApp.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RoktApp.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RoktApp.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RoktApp.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.iml" filepath="$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.main.iml" filepath="$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/numberslib/RoktApp.numberslib.unitTest.iml" />
+    </modules>
+  </component>
+</project>
