@@ -28,9 +28,9 @@ class NumbersAdapter : ListAdapter<Int, NumbersAdapter.NumberViewHolder>(NumberD
 
 
     /* Gets current number and uses it to bind view. */
-    override fun onBindViewHolder(holder: NumberViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NumberViewHolder, position: Int) =
         holder.bind(getItem(position))
-    }
+
 }
 
 object NumberDiffCallback : DiffUtil.ItemCallback<Int>() {
