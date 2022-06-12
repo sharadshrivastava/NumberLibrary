@@ -1,30 +1,31 @@
 package com.test.app.ui.numbers
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.test.app.R
+import com.test.app.databinding.LayoutNumberItemBinding
 
 class NumbersAdapter : ListAdapter<Int, NumbersAdapter.NumberViewHolder>(NumberDiffCallback) {
 
-    class NumberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val numberTextView: TextView = itemView.findViewById(R.id.number)
-
+    class NumberViewHolder(private val binding: LayoutNumberItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(value: Int) {
-            numberTextView.text = value.toString()
+            binding.number.text = value.toString()
         }
     }
 
     /* Creates and inflates view and return NumberViewHolder. */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NumberViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_number_item, parent, false)
-        return NumberViewHolder(view)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        NumberViewHolder(
+            LayoutNumberItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
 
     /* Gets current number and uses it to bind view. */
     override fun onBindViewHolder(holder: NumberViewHolder, position: Int) {
