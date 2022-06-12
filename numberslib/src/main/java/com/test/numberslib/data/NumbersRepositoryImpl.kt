@@ -11,8 +11,9 @@ import javax.inject.Singleton
 @Singleton
 class NumbersRepositoryImpl @Inject constructor(private val api: NumbersApi) : NumbersRepository {
 
-    override suspend fun numbers(): NumbersResult = try {
-        NumbersResult.Success(api.numbers())
+    override suspend fun fetchNumbers(): NumbersResult = try {
+        val numbers = api.numbers()
+        NumbersResult.Success(numbers)
     } catch (e: Exception) {
         NumbersResult.Error(e.message)
     }

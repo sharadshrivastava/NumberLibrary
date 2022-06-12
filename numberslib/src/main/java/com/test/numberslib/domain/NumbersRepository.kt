@@ -4,5 +4,5 @@ import com.test.numberslib.data.NumbersResult
 
 interface NumbersRepository {
 
-    suspend fun numbers(): NumbersResult
+    suspend fun fetchNumbers(): NumbersResult
 }

@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 /**
  * Hilt's module to get Retrofit's network interface object.
- * This module is required because 'stockApi' doesn't has default constructor.
+ * This module is required because 'NumbersApi' doesn't has default constructor.
  */
 @InstallIn(SingletonComponent::class)
 @Module

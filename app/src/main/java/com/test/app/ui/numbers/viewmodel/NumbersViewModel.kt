@@ -30,7 +30,7 @@ class NumbersViewModel @Inject constructor(
 
     fun fetchNumbers() {
         viewModelScope.launch(exceptionHandler) {
-            when (val numbersResult = useCase.numbers()) {
+            when (val numbersResult = useCase.fetchNumbers()) {
                 is NumbersResult.Success -> {
                     _viewState.value = NumbersViewState.Success(numbersResult.numbers)
                 }
