@@ -9,6 +9,8 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,7 +27,6 @@ class NumbersViewModel @Inject constructor(
     }
 
     init {
-        _viewState.value = NumbersViewState.Loading
         fetchNumbers()
     }
 
@@ -62,6 +63,7 @@ class NumbersViewModel @Inject constructor(
     }
 
     private suspend fun updateAverage() {
-        averageNumberFlow.value = useCase.average().toString()
+        val bd = BigDecimal(useCase.average() ?: 0.0).setScale(2, RoundingMode.HALF_UP)
+        averageNumberFlow.value = bd.toDouble().toString()
     }
 }
