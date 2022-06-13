@@ -12,4 +12,6 @@ class NumbersUseCase @Inject constructor(
     suspend fun addNumber(value: Int) = repository.addNumber(value)
 
     suspend fun deleteNumber(value: Int) = repository.deleteNumber(value)
+
+    suspend fun average() = repository.average()
 }

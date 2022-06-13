@@ -29,8 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/std_margin"
             android:layout_marginTop="@dimen/std_large_margin"
-            android:maxLines="1"
-            android:text="Please enter number"
+            android:text="@string/enter_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Please enter number" />
@@ -41,6 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/row_height"
             android:layout_marginStart="@dimen/std_margin"
+            android:inputType="numberSigned"
+            android:hint="@string/enter_number_hint"
+            android:autofillHints="@string/enter_number_hint"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -48,7 +50,7 @@
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:text="@string/add"
             app:layout_constraintTop_toBottomOf="@id/entry"
             app:layout_constraintStart_toStartOf="@id/entry"/>
 
@@ -56,9 +58,22 @@
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            app:layout_constraintTop_toBottomOf="@id/entry"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_marginStart="@dimen/std_large_margin"
+            android:text="@string/delete"
+            app:layout_constraintStart_toEndOf="@id/addButton"
+            app:layout_constraintTop_toBottomOf="@id/entry" />
+
+        <TextView
+            android:id="@+id/average"
+            style="@style/BlackStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginTop="@dimen/std_large_margin"
+            android:text="@string/average"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addButton"
+            tools:text="Please enter number" />
 
 
         <ProgressBar

@@ -46,6 +46,8 @@ class NumbersViewModel @Inject constructor(
         }
     }
 
+    suspend fun average() = useCase.average()
+
     private suspend fun handleResult(numbersResult: NumbersResult) {
         when (numbersResult) {
             is NumbersResult.Success -> {

@@ -4,6 +4,7 @@ import com.test.numberslib.data.cache.NumbersDao
 import com.test.numberslib.data.cache.entity.Data
 import com.test.numberslib.data.network.NumbersApi
 import com.test.numberslib.domain.NumbersRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -29,6 +30,8 @@ class NumbersRepositoryImpl @Inject constructor(
     override suspend fun addNumber(value: Int) = dao.insertNumber(Data(value = value))
 
     override suspend fun deleteNumber(value: Int) = dao.delete(value)
+
+    override suspend fun average() = dao.average()
 
     private fun mapToData(list: List<Int>) = list.map { Data(value = it) }
 }

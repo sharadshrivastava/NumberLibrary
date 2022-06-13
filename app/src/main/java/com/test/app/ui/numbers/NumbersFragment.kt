@@ -37,6 +37,7 @@ class NumbersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupListView()
         observeViewState()
+        observeAverage()
 
         binding.addButton.setOnClickListener {
             numbersViewModel.addNumber(binding.entry.text.toString().toInt())
@@ -74,11 +75,22 @@ class NumbersFragment : Fragment() {
         }
     }
 
+    private fun observeAverage() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                numbersViewModel.average().collect {
+
+                }
+            }
+        }
+    }
+
     private fun handleSuccess(numbers: List<Data>?) {
         binding.isLoading = false
         if (numbers.isNullOrEmpty()) {
             binding.isEmpty = true
         } else {
+            binding.isEmpty = false
             (binding.numbersList.adapter as NumbersAdapter).submitList(numbers)
         }
     }
