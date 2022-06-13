@@ -18,6 +18,7 @@ class NumbersViewModel @Inject constructor(
 
     private val _viewState = MutableStateFlow<NumbersViewState>(NumbersViewState.Loading)
     val viewState: StateFlow<NumbersViewState> = _viewState
+    val averageNumberFlow = MutableStateFlow(0.0)
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         _viewState.value = NumbersViewState.Error(throwable.message)
@@ -46,18 +47,21 @@ class NumbersViewModel @Inject constructor(
         }
     }
 
-    suspend fun average() = useCase.average()
-
     private suspend fun handleResult(numbersResult: NumbersResult) {
         when (numbersResult) {
             is NumbersResult.Success -> {
                 numbersResult.numbers.collect {
                     _viewState.value = NumbersViewState.Success(it)
+                    updateAverage()
                 }
             }
             is NumbersResult.Error -> {
                 _viewState.value = NumbersViewState.Error(numbersResult.msg)
             }
         }
+    }
+
+    private suspend fun updateAverage() {
+        averageNumberFlow.value = useCase.average()
     }
 }

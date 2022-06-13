@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="vm"
+            type="com.test.app.ui.numbers.viewmodel.NumbersViewModel" />
+
+        <variable
             name="isLoading"
             type="boolean" />
 
@@ -64,16 +68,16 @@
             app:layout_constraintTop_toBottomOf="@id/entry" />
 
         <TextView
-            android:id="@+id/average"
+            android:id="@+id/averageTitle"
             style="@style/BlackStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/std_margin"
             android:layout_marginTop="@dimen/std_large_margin"
-            android:text="@string/average"
+            android:text="@{vm.averageNumberFlow.toString()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/addButton"
-            tools:text="Please enter number" />
+            tools:text="Average of numbers is 2.5" />
 
 
         <ProgressBar
@@ -108,6 +112,6 @@
             android:visibility="@{(isLoading || isEmpty) ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addButton" />
+            app:layout_constraintTop_toBottomOf="@id/averageTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -23,6 +23,6 @@ interface NumbersDao {
     suspend fun delete(number: Int)
 
     @Query("SELECT avg(value) FROM Data")
-    suspend fun average(): Flow<Double>
+    suspend fun average(): Double
 
 }

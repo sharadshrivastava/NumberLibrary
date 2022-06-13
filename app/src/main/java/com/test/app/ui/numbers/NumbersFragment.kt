@@ -31,13 +31,13 @@ class NumbersFragment : Fragment() {
         return FragmentNumbersBinding.inflate(inflater, container, false).apply {
             binding = this
             lifecycleOwner = this@NumbersFragment
+            vm = numbersViewModel
         }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupListView()
         observeViewState()
-        observeAverage()
 
         binding.addButton.setOnClickListener {
             numbersViewModel.addNumber(binding.entry.text.toString().toInt())
@@ -70,16 +70,6 @@ class NumbersFragment : Fragment() {
                             handleError(it.msg)
                         }
                     }
-                }
-            }
-        }
-    }
-
-    private fun observeAverage() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                numbersViewModel.average().collect {
-
                 }
             }
         }

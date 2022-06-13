@@ -11,5 +11,5 @@ interface NumbersRepository {
 
     suspend fun deleteNumber(value: Int)
 
-    suspend fun average(): Flow<Double>
+    suspend fun average(): Double
 }
