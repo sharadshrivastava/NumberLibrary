@@ -34,22 +34,24 @@ class NumbersViewModel @Inject constructor(
         }
     }
 
-    fun addNumber(value: Int){
+    fun addNumber(value: Int) {
         viewModelScope.launch(exceptionHandler) {
-            handleResult(useCase.addNumber(value))
+            useCase.addNumber(value)
         }
     }
 
-    fun deleteNumber(value: Int){
+    fun deleteNumber(value: Int) {
         viewModelScope.launch(exceptionHandler) {
-            handleResult(useCase.deleteNumber(value))
+            useCase.deleteNumber(value)
         }
     }
 
-    private fun handleResult(numbersResult: NumbersResult) {
+    private suspend fun handleResult(numbersResult: NumbersResult) {
         when (numbersResult) {
             is NumbersResult.Success -> {
-                _viewState.value = NumbersViewState.Success(numbersResult.numbers)
+                numbersResult.numbers.collect {
+                    _viewState.value = NumbersViewState.Success(it)
+                }
             }
             is NumbersResult.Error -> {
                 _viewState.value = NumbersViewState.Error(numbersResult.msg)

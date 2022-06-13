@@ -14,6 +14,7 @@ import com.test.app.databinding.FragmentNumbersBinding
 import com.test.app.ui.common.showErrorBar
 import com.test.app.ui.numbers.viewmodel.NumbersViewModel
 import com.test.app.ui.numbers.viewmodel.NumbersViewState
+import com.test.numberslib.data.cache.entity.Data
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -50,7 +51,6 @@ class NumbersFragment : Fragment() {
         with(binding.numbersList) {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             adapter = NumbersAdapter()
-            setHasFixedSize(true)
         }
     }
 
@@ -74,7 +74,7 @@ class NumbersFragment : Fragment() {
         }
     }
 
-    private fun handleSuccess(numbers: List<Int>?) {
+    private fun handleSuccess(numbers: List<Data>?) {
         binding.isLoading = false
         if (numbers.isNullOrEmpty()) {
             binding.isEmpty = true

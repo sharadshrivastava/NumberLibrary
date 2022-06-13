@@ -6,7 +6,7 @@ interface NumbersRepository {
 
     suspend fun fetchNumbers(): NumbersResult
 
-    suspend fun addNumber(value: Int): NumbersResult
+    suspend fun addNumber(value: Int)
 
-    suspend fun deleteNumber(value: Int): NumbersResult
+    suspend fun deleteNumber(value: Int)
 }

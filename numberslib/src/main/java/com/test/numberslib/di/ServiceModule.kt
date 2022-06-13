@@ -1,5 +1,9 @@
 package com.test.numberslib.di
 
+import android.app.Application
+import androidx.room.Room
+import com.test.numberslib.data.cache.NumbersDB
+import com.test.numberslib.data.cache.NumbersDao
 import com.test.numberslib.data.network.NumbersApi
 import com.test.numberslib.data.network.NumbersApi.Companion.BASE_URL
 import dagger.Module
@@ -11,8 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 /**
- * Hilt's module to get Retrofit's network interface object.
- * This module is required because 'NumbersApi' doesn't has default constructor.
+ * Hilt's module to get Retrofit's network and Dao interface object.
+ * This module is required because 'NumbersApi' and Dao doesn't have default constructor.
  */
 @InstallIn(SingletonComponent::class)
 @Module
@@ -27,4 +31,10 @@ object ServiceModule {
             .build()
             .create(NumbersApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun dao(app: Application): NumbersDao = Room.databaseBuilder(
+        app, NumbersDB::class.java, "app-db"
+    ).build().numbersDao()
 }
