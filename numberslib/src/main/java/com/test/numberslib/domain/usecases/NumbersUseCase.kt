@@ -9,7 +9,7 @@ class NumbersUseCase @Inject constructor(
 
     suspend fun fetchNumbers() = repository.fetchNumbers()
 
-    //suspend fun addNumber(value: Int) = repository.numbers()
+    suspend fun addNumber(value: Int) = repository.addNumber(value)
 
-    //suspend fun deleteNumber(value: Int)
+    suspend fun deleteNumber(value: Int) = repository.deleteNumber(value)
 }

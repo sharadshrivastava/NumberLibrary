@@ -11,10 +11,22 @@ import javax.inject.Singleton
 @Singleton
 class NumbersRepositoryImpl @Inject constructor(private val api: NumbersApi) : NumbersRepository {
 
+    private var numbers: MutableList<Int>? = null
+
     override suspend fun fetchNumbers(): NumbersResult = try {
-        val numbers = api.numbers()
+        numbers = api.numbers()?.toMutableList()
         NumbersResult.Success(numbers)
     } catch (e: Exception) {
         NumbersResult.Error(e.message)
+    }
+
+    override suspend fun addNumber(value: Int): NumbersResult {
+        numbers?.add(value)
+        return NumbersResult.Success(numbers)
+    }
+
+    override suspend fun deleteNumber(value: Int): NumbersResult {
+        numbers?.remove(value)
+        return NumbersResult.Success(numbers)
     }
 }

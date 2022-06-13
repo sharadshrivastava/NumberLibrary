@@ -36,6 +36,14 @@ class NumbersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupListView()
         observeViewState()
+
+        binding.addButton.setOnClickListener {
+            numbersViewModel.addNumber(binding.entry.text.toString().toInt())
+        }
+
+        binding.deleteButton.setOnClickListener {
+            numbersViewModel.deleteNumber(binding.entry.text.toString().toInt())
+        }
     }
 
     private fun setupListView() {
@@ -68,8 +76,11 @@ class NumbersFragment : Fragment() {
 
     private fun handleSuccess(numbers: List<Int>?) {
         binding.isLoading = false
-        binding.isEmpty = false
-        (binding.numbersList.adapter as NumbersAdapter).submitList(numbers)
+        if (numbers.isNullOrEmpty()) {
+            binding.isEmpty = true
+        } else {
+            (binding.numbersList.adapter as NumbersAdapter).submitList(numbers)
+        }
     }
 
     private fun handleError(msg: String?) {

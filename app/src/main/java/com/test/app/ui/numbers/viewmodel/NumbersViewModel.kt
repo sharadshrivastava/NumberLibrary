@@ -30,13 +30,29 @@ class NumbersViewModel @Inject constructor(
 
     fun fetchNumbers() {
         viewModelScope.launch(exceptionHandler) {
-            when (val numbersResult = useCase.fetchNumbers()) {
-                is NumbersResult.Success -> {
-                    _viewState.value = NumbersViewState.Success(numbersResult.numbers)
-                }
-                is NumbersResult.Error -> {
-                    _viewState.value = NumbersViewState.Error(numbersResult.msg)
-                }
+            handleResult(useCase.fetchNumbers())
+        }
+    }
+
+    fun addNumber(value: Int){
+        viewModelScope.launch(exceptionHandler) {
+            handleResult(useCase.addNumber(value))
+        }
+    }
+
+    fun deleteNumber(value: Int){
+        viewModelScope.launch(exceptionHandler) {
+            handleResult(useCase.deleteNumber(value))
+        }
+    }
+
+    private fun handleResult(numbersResult: NumbersResult) {
+        when (numbersResult) {
+            is NumbersResult.Success -> {
+                _viewState.value = NumbersViewState.Success(numbersResult.numbers)
+            }
+            is NumbersResult.Error -> {
+                _viewState.value = NumbersViewState.Error(numbersResult.msg)
             }
         }
     }
