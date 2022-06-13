@@ -42,12 +42,12 @@
             android:id="@+id/entry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/row_height"
+            android:layout_marginTop="@dimen/std_margin"
             android:layout_marginStart="@dimen/std_margin"
             android:inputType="numberSigned"
             android:hint="@string/enter_number_hint"
             android:autofillHints="@string/enter_number_hint"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/entryTitle"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <Button
@@ -55,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add"
+            android:layout_marginTop="@dimen/std_margin"
             app:layout_constraintTop_toBottomOf="@id/entry"
             app:layout_constraintStart_toStartOf="@id/entry"/>
 
@@ -65,16 +66,16 @@
             android:layout_marginStart="@dimen/std_large_margin"
             android:text="@string/delete"
             app:layout_constraintStart_toEndOf="@id/addButton"
-            app:layout_constraintTop_toBottomOf="@id/entry" />
+            app:layout_constraintTop_toTopOf="@id/addButton" />
 
         <TextView
             android:id="@+id/averageTitle"
-            style="@style/BlackStyle"
+            style="@style/BlackStyle.TitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/std_margin"
-            android:layout_marginTop="@dimen/std_large_margin"
-            android:text="@{vm.averageNumberFlow.toString()}"
+            android:layout_marginTop="@dimen/std_xlarge_margin"
+            android:text="@{@string/average(vm.averageNumberFlow)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/addButton"
             tools:text="Average of numbers is 2.5" />

@@ -5,5 +5,5 @@
     <string name="delete">Delete</string>
     <string name="enter_number">Please enter number</string>
     <string name="enter_number_hint">enter number to add or delete</string>
-    <string name="average">Average of numbers: %1$s</string>
+    <string name="average">Average of numbers is %1$s</string>
 </resources>

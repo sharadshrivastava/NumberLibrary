@@ -10,4 +10,8 @@
         <item name="android:textSize">@dimen/text_size_large</item>
     </style>
 
+    <style name="BlackStyle.TitleStyle">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
