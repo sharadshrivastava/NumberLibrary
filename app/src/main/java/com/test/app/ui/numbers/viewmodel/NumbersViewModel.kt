@@ -62,7 +62,7 @@ class NumbersViewModel @Inject constructor(
     private suspend fun handleResult(numbersResult: NumbersResult) {
         when (numbersResult) {
             is NumbersResult.Success -> {
-                numbersResult.numbers.collect {
+                numbersResult.numbers?.collect {
                     _viewState.value = NumbersViewState.Success(it)
                     updateAverage()
                 }

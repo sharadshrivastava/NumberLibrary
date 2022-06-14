@@ -1,8 +1,8 @@
-package com.test.app
+package com.test.numberslib
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.test.app.data.StocksRepositoryImpl
-import com.test.app.data.network.StocksApi
+import com.test.numberslib.data.NumbersRepositoryImpl
+import com.test.numberslib.data.network.NumbersApi
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Rule
@@ -21,9 +21,14 @@ abstract class BaseTest {
         .baseUrl(mockWebServer.url("").toString())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(StocksApi::class.java)
+        .create(NumbersApi::class.java)
 
-    var repository = StocksRepositoryImpl(api)
+//    val context = ApplicationProvider.getApplicationContext<Context>()
+//    val dao = Room.inMemoryDatabaseBuilder(
+//        context, NumbersDB::class.java
+//    ).build().numbersDao()
+
+    var repository = NumbersRepositoryImpl(api, null)
 
     fun setResponse(fileName: String) {
         val input = this.javaClass.classLoader?.getResourceAsStream(fileName)

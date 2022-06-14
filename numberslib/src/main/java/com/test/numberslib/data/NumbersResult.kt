@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 sealed class NumbersResult {
 
-    data class Success(val numbers: Flow<List<Data>>) : NumbersResult()
+    data class Success(val numbers: Flow<List<Data>>?) : NumbersResult()
 
     data class Error(val msg: String?) : NumbersResult()
 }

@@ -27,7 +27,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class StocksFragmentTest {
+class NumbersFragmentTest {
 
     @get:Rule
     val rule = ActivityScenarioRule(NumbersActivity::class.java)
@@ -54,20 +54,20 @@ class StocksFragmentTest {
 
     @Test
     fun testListItemsCount() {
-        onView(withId(R.id.numbersList)).check(matches(hasItemCount(17)))
+        onView(withId(R.id.numbersList)).check(matches(hasItemCount(4)))
     }
 
     @Test
     fun testListFirstItem() {
         onView(withId(R.id.numbersList))
-            .check(matches(viewAtPosition(0, hasDescendant(withText("TWTR")))));
+            .check(matches(viewAtPosition(0, hasDescendant(withText("10")))));
     }
 
     @Test
     fun testListLastItem() {  //first scroll till last and then check item.
         onView(withId(R.id.numbersList))
-            .perform(scrollToPosition<RecyclerView.ViewHolder>(16))
-            .check(matches(viewAtPosition(16, hasDescendant(withText("Rent The Runway")))));
+            .perform(scrollToPosition<RecyclerView.ViewHolder>(3))
+            .check(matches(viewAtPosition(3, hasDescendant(withText("400")))));
     }
 
     @Test

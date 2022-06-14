@@ -14,24 +14,28 @@ import javax.inject.Singleton
 @Singleton
 class NumbersRepositoryImpl @Inject constructor(
     private val api: NumbersApi,
-    private val dao: NumbersDao
+    private val dao: NumbersDao?
 ) : NumbersRepository {
 
     override suspend fun fetchNumbers(): NumbersResult = try {
         val numbers = api.numbers()
         if (!numbers.isNullOrEmpty()) {
-            dao.insertNumbers(mapToData(numbers))
+            dao?.insertNumbers(mapToData(numbers))
         }
-        NumbersResult.Success(dao.numbers())
+        NumbersResult.Success(dao?.numbers())
     } catch (e: Exception) {
         NumbersResult.Error(e.message)
     }
 
-    override suspend fun addNumber(value: Int) = dao.insertNumber(Data(value = value))
+    override suspend fun addNumber(value: Int) {
+        dao?.insertNumber(Data(value = value))
+    }
 
-    override suspend fun deleteNumber(value: Int) = dao.delete(value)
+    override suspend fun deleteNumber(value: Int) {
+        dao?.delete(value)
+    }
 
-    override suspend fun average() = dao.average()
+    override suspend fun average() = dao?.average()
 
     private fun mapToData(list: List<Int>) = list.map { Data(value = it) }
 }
