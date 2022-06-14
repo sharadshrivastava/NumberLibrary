@@ -21,6 +21,19 @@ MVVM provides better handling of configurations and CLEAN provides layered archi
 ![Architecture Diagram](https://uploads.toptal.io/blog/image/127608/toptal-blog-image-1543413671794-80993a19fea97477524763c908b50a7a.png)
 
 <br><br>
+## Technical Details
+1. It is Using Androidx and Jetpacks.
+2. It is Using Retrofit for network communications.
+3. It is Using Viemodels and Flow.
+4. It is Using Hilt for dependency injection.
+5. It is Using Navigation Architecture.
+6. It is Using data binding.
+7. It is Using Espresso for UI test cases. Mockito and Junit for non ui testing.
+8. It is using Mock web server to simulate server response and coroutine based test techniques.
+<br>
+This app is focused for phone and supports portrait and landscape modes
+
+<br><br>
 ### How to use this app
 In Android studio, create a new application from version control by using following url: <br>
 https://github.com/sharadshrivastava/NumberLibrary.git
