@@ -10,8 +10,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.test.app.R
 import com.test.app.databinding.FragmentNumbersBinding
 import com.test.app.ui.common.showErrorBar
+import com.test.app.ui.common.showToast
 import com.test.app.ui.numbers.viewmodel.NumbersViewModel
 import com.test.app.ui.numbers.viewmodel.NumbersViewState
 import com.test.numberslib.data.cache.entity.Data
@@ -40,11 +42,11 @@ class NumbersFragment : Fragment() {
         observeViewState()
 
         binding.addButton.setOnClickListener {
-            numbersViewModel.addNumber(binding.entry.text.toString().toInt())
+            handleAdd()
         }
 
         binding.deleteButton.setOnClickListener {
-            numbersViewModel.deleteNumber(binding.entry.text.toString().toInt())
+            handleDelete()
         }
     }
 
@@ -89,5 +91,31 @@ class NumbersFragment : Fragment() {
         binding.isLoading = false
         binding.isEmpty = true
         showErrorBar(msg = msg)
+    }
+
+    private fun handleDelete() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val entry = binding.entry.text.toString()
+
+            if (numbersViewModel.isNumberValid(entry)) {
+                val value = entry.toInt()
+                if (numbersViewModel.doesNumberExists(value)) {
+                    numbersViewModel.deleteNumber(value)
+                } else {
+                    showToast(getString(R.string.numbers_does_not_exists))
+                }
+            } else {
+                showToast(getString(R.string.invalid_number))
+            }
+        }
+    }
+
+    private fun handleAdd() {
+        val entry = binding.entry.text.toString()
+        if (numbersViewModel.isNumberValid(entry)) {
+            numbersViewModel.addNumber(entry.toInt())
+        } else {
+            showToast(getString(R.string.invalid_number))
+        }
     }
 }

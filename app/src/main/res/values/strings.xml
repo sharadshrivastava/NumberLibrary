@@ -3,7 +3,9 @@
     <string name="numbers">Numbers</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
+    <string name="numbers_does_not_exists">Numbers does not exists</string>
     <string name="enter_number">Please enter number</string>
     <string name="enter_number_hint">enter number to add or delete</string>
     <string name="average">Average of numbers is %1$s</string>
+    <string name="invalid_number">Please enter valid number</string>
 </resources>

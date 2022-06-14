@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -42,11 +43,21 @@ class NumbersViewModel @Inject constructor(
         }
     }
 
-    fun deleteNumber(value: Int) {
-        viewModelScope.launch(exceptionHandler) {
-            useCase.deleteNumber(value)
+    suspend fun deleteNumber(value: Int) = useCase.deleteNumber(value)
+
+    //Checking on ui layer instead of library using DB, because its an App's feature.
+    suspend fun doesNumberExists(value: Int): Boolean {
+        val currentState = _viewState.first()
+        if (currentState is NumbersViewState.Success) {
+            val result = currentState.numbers.filter {
+                it.value == value
+            }
+            return result.isNotEmpty()
         }
+        return false
     }
+
+    fun isNumberValid(value: String) = value.toIntOrNull() != null
 
     private suspend fun handleResult(numbersResult: NumbersResult) {
         when (numbersResult) {
