@@ -20,122 +20,126 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/entryTitle"
-            style="@style/BlackStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/std_margin"
-            android:layout_marginTop="@dimen/std_large_margin"
-            android:text="@string/enter_number"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Please enter number" />
-
-        <EditText
-            android:id="@+id/entry"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/std_margin"
-            android:layout_marginStart="@dimen/std_margin"
-            android:inputType="numberSigned"
-            android:hint="@string/enter_number_hint"
-            android:autofillHints="@string/enter_number_hint"
-            app:layout_constraintTop_toBottomOf="@id/entryTitle"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:background="@android:color/white">
 
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add"
-            android:layout_marginTop="@dimen/std_margin"
-            app:layout_constraintTop_toBottomOf="@id/entry"
-            app:layout_constraintStart_toStartOf="@id/entry"/>
+            <TextView
+                android:id="@+id/entryTitle"
+                style="@style/BlackStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_large_margin"
+                android:text="@string/enter_number"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Please enter number" />
 
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/std_large_margin"
-            android:text="@string/delete"
-            app:layout_constraintStart_toEndOf="@id/addButton"
-            app:layout_constraintTop_toTopOf="@id/addButton" />
+            <EditText
+                android:id="@+id/entry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_margin"
+                android:autofillHints="@string/enter_number_hint"
+                android:hint="@string/enter_number_hint"
+                android:inputType="numberSigned"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/entryTitle" />
 
-        <TextView
-            android:id="@+id/averageTitle"
-            style="@style/BlackStyle.TitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/std_margin"
-            android:layout_marginTop="@dimen/std_xlarge_margin"
-            android:text="@{@string/average(vm.averageNumberFlow)}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addButton"
-            tools:text="Average of numbers is 2.5" />
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_margin"
+                android:text="@string/add"
+                app:layout_constraintStart_toStartOf="@id/entry"
+                app:layout_constraintTop_toBottomOf="@id/entry" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/std_large_margin"
-            android:background="@color/colorGrayBg"
-            android:layout_marginTop="@dimen/std_margin"
-            app:layout_constraintTop_toBottomOf="@id/averageTitle"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_large_margin"
+                android:text="@string/delete"
+                app:layout_constraintStart_toEndOf="@id/addButton"
+                app:layout_constraintTop_toTopOf="@id/addButton" />
 
+            <TextView
+                android:id="@+id/averageTitle"
+                style="@style/BlackStyle.TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_xlarge_margin"
+                android:text="@{@string/average(vm.averageNumberFlow)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/addButton"
+                tools:text="Average of numbers is 2.5" />
 
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/std_large_margin"
+                android:layout_marginTop="@dimen/std_margin"
+                android:background="@color/colorGrayBg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/averageTitle" />
 
-        <TextView
-            android:id="@+id/empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{isEmpty ? View.VISIBLE : View.GONE}"
-            android:text="@string/no_data"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text = "No Data"/>
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_xlarge_margin"
+                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numbersTitle" />
 
-        <TextView
-            android:id="@+id/numbersTitle"
-            style="@style/BlackStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/std_margin"
-            android:layout_marginTop="@dimen/std_large_margin"
-            android:text="@string/numbers"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-            tools:text="Please enter number" />
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_xlarge_margin"
+                android:text="@string/no_data"
+                android:visibility="@{isEmpty ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numbersTitle"
+                tools:text="No Data" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/numbersList"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/std_margin"
-            android:layout_marginEnd="@dimen/std_margin"
-            android:layout_marginTop="@dimen/std_large_margin"
-            android:visibility="@{(isLoading || isEmpty) ? View.GONE : View.VISIBLE}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/numbersTitle"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                android:id="@+id/numbersTitle"
+                style="@style/BlackStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_large_margin"
+                android:text="@string/numbers"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                tools:text="Please enter number" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/numbersList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_large_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:visibility="@{(isLoading || isEmpty) ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numbersTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
