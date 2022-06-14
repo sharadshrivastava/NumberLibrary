@@ -3,10 +3,12 @@ package com.test.app.ui.numbers
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
+import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -15,6 +17,7 @@ import com.test.app.NumbersActivity
 import com.test.app.R
 import com.test.app.ui.common.hasItemCount
 import com.test.app.ui.common.viewAtPosition
+import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -80,5 +83,23 @@ class NumbersFragmentTest {
                 )
             )
         //If on click something is shown/launch then we can assert that here.
+    }
+
+    @Test
+    fun testEnteredNumberIsValid() {
+        //Enter invalid value in to edit text
+        onView(withId(R.id.entry)).perform(ViewActions.typeText(""))
+        //click add button
+        onView(withId(R.id.addButton)).perform(click())
+        //check whether toast is shown or not.
+        rule.scenario.onActivity {
+            onView(withText(R.string.invalid_number)).inRoot(
+                withDecorView(
+                    not(
+                        it.window.decorView
+                    )
+                )
+            ).check(matches(isDisplayed()))
+        }
     }
 }
