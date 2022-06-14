@@ -26,8 +26,9 @@ MVVM provides better handling of configurations and CLEAN provides layered archi
 4. It is Using Hilt for dependency injection.
 5. It is Using Navigation Architecture.
 6. It is Using data binding.
-7. It is Using Espresso for UI test cases. Mockito and Junit for non ui testing.
-8. It is using Mock web server to simulate server response and coroutine based test techniques.
+7. It is using Room DB to support offline mode.
+8. It is Using Espresso for UI test cases. Mockito and Junit for non ui testing.
+9. It is using Mock web server to simulate server response and coroutine based test techniques.
 <br>
 This app is focused for phone and supports portrait and landscape modes <br> <br>
 
