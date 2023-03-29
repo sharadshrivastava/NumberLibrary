@@ -1,6 +1,6 @@
 ## Library Application
 This is a test application which has android application and android library. 
-Library provides the average of numbers to the client applications.
+Library provides the average of numbers to the client  applications.
 
 ### Library features: 
 1. Fetches the data from server and provides to client application.
